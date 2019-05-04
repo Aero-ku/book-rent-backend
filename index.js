@@ -20,5 +20,7 @@ app.get('/getBookDetail', loader.get('/getBookDetail'));
 
 // 收藏图书
 app.get('/storeBook', loader.get('/storeBook'));
+// 取消收藏图书
+app.get('/unStoreBook', loader.get('/storeBook'));
 
 app.listen(globalConfig["port"]);
