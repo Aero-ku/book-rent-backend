@@ -25,4 +25,7 @@ app.post('/storeBook', loader.get('/storeBook'));
 // 取消收藏
 app.post('/unStoreBook', loader.get('/unStoreBook'));
 
+// 获取用户图书收藏信息
+app.get('/getStoreInfo', loader.get('/getStoreInfo'));
+
 app.listen(globalConfig["port"]);
