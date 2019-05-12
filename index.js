@@ -28,4 +28,7 @@ app.post('/unStoreBook', loader.get('/unStoreBook'));
 // 获取用户图书收藏信息
 app.get('/getStoreInfo', loader.get('/getStoreInfo'));
 
+// 获取个人中心一栏信息
+app.get('/getFirstInfo', loader.get('/getFirstInfo'));
+
 app.listen(globalConfig["port"]);

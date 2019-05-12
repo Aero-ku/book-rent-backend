@@ -49,4 +49,25 @@ function getStoreInfo(request, response){
 
 path.set('/getStoreInfo', getStoreInfo);
 
+//  获取个人中心一栏信息
+function getFirstInfo(request, response){
+  const { user_name } = request.query
+  searchDao.find("user_info", { user_name: user_name }, function(error, result){
+    if (error === null) {
+      if (result.length) {
+        let res = {}
+        res.storeNum = result[0].user_store.length
+        res.score = result[0].score
+        res.couponNum = JSON.parse(result[0].coupon).length
+        res.cardNum = JSON.parse(result[0].card).length
+        response.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
+        response.write(JSON.stringify(res));
+        response.end();
+      }
+    }
+  })
+}
+path.set('/getFirstInfo', getFirstInfo);
+
+
 module.exports.path = path;
