@@ -11,6 +11,7 @@ function storeBook(request, response){
     if(error === null){
       response.writeHead(200, { "Content-Type": 'text/html;charset=utf-8'})
       response.write('收藏成功！1');
+      console.log('收藏result', result)
       response.end();
     } else {
       console.log('error');

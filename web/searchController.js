@@ -55,11 +55,12 @@ function getFirstInfo(request, response){
   searchDao.find("user_info", { user_name: user_name }, function(error, result){
     if (error === null) {
       if (result.length) {
+        console.log('result:====', result)
         let res = {}
         res.storeNum = result[0].user_store.length
         res.score = result[0].score
-        res.couponNum = JSON.parse(result[0].coupon).length
-        res.cardNum = JSON.parse(result[0].card).length
+        res.couponNum = result[0].coupon.length
+        res.cardNum =result[0].card.length
         response.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
         response.write(JSON.stringify(res));
         response.end();

@@ -31,4 +31,10 @@ app.get('/getStoreInfo', loader.get('/getStoreInfo'));
 // 获取个人中心一栏信息
 app.get('/getFirstInfo', loader.get('/getFirstInfo'));
 
+// 加入借书架
+app.post('/addToShelf', loader.get('/addToShelf'));
+
+// 获取用户借书架信息
+app.get('/shelfInfo', loader.get('/shelfInfo'));
+
 app.listen(globalConfig["port"]);
