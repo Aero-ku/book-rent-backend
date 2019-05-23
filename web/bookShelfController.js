@@ -19,8 +19,8 @@ function addToShelf(request, response){
 
 // 查询用户的借书架信息
 function shelfInfo(request, response){
-	console.log('resquest.query', resquest.query)
-	const { user_name } = resquest.query
+	console.log('resquest.query', request.query)
+	const { user_name } = request.query
 	dao.find("user_info", {user_name: user_name}, function(error, result){
 		if (error === null) {
 			response.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'});

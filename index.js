@@ -37,4 +37,7 @@ app.post('/addToShelf', loader.get('/addToShelf'));
 // 获取用户借书架信息
 app.get('/shelfInfo', loader.get('/shelfInfo'));
 
+// 分类图书结果页
+app.get('/getSortData', loader.get('/getSortData'));
+
 app.listen(globalConfig["port"]);
