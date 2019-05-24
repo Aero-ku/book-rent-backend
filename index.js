@@ -34,6 +34,9 @@ app.get('/getFirstInfo', loader.get('/getFirstInfo'));
 // 加入借书架
 app.post('/addToShelf', loader.get('/addToShelf'));
 
+// 借书架中删除绘本
+app.post('/deleteFromShelf', loader.get('/deleteFromShelf'));
+
 // 获取用户借书架信息
 app.get('/shelfInfo', loader.get('/shelfInfo'));
 

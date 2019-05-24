@@ -2,7 +2,7 @@ var dao = require("../dao/utils");
 
 var path = new Map()
 
-//加入借书架
+//绘本加入借书架
 function addToShelf(request, response){
 	console.log('request.body', request.body)
 	const { book, user_name } = request.body
@@ -17,9 +17,21 @@ function addToShelf(request, response){
 	})
 }
 
+// 借书架删除绘本
+function deleteFromShelf(request, response) {
+	const { user_name, book_id } = request.body
+	dao.update("user_info", {user_name: user_name}, {$pull: {user_borrow: { book_id: book_id} } }, function(error, result) {
+		if(error === null) {
+			console.log(result)
+			response.writeHead(200, {"Content-Type": "text/html;charset=utf-8" })
+			response.write("删除成功！")
+			response.end();
+		}
+	})
+}
+
 // 查询用户的借书架信息
 function shelfInfo(request, response){
-	console.log('resquest.query', request.query)
 	const { user_name } = request.query
 	dao.find("user_info", {user_name: user_name}, function(error, result){
 		if (error === null) {
@@ -33,6 +45,7 @@ function shelfInfo(request, response){
 }
 
 path.set('/addToShelf', addToShelf);
+path.set('/deleteFromShelf', deleteFromShelf);
 path.set('/shelfInfo', shelfInfo);
 
 module.exports.path = path;
