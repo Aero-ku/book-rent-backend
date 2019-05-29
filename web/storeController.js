@@ -37,4 +37,39 @@ function unStoreBook(request, response) {
 }
 
 path.set('/unStoreBook', unStoreBook);
+
+// 获取收藏信息 *** mongodb强大的查询语句
+function myStore(request, response) {
+  const { userName } = request.query
+  console.log('userName', userName)
+  dao.find("user_info", {user_name: userName}, function(error, result) {
+    if (error === null) {
+      const storeArr = result[0].user_store
+      dao.find("book_list", {book_id: {$in: storeArr}}, function(error, result) {
+        if (error=== null) {
+          console.log('result', result);
+          response.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
+          response.write(JSON.stringify(result));
+          response.end();
+        }
+      })
+    }
+  }) 
+}
+
+path.set('/myStore', myStore);
+
+function getStoredInfo(request, response) {
+  const { user_name } = request.query
+  dao.find("user_info", {user_name: user_name}, function(error, result) {
+    if(error === null) {
+      response.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'});
+      response.write(JSON.stringify(result));
+      response.end();
+    }
+  })
+}
+
+path.set('/getStoredInfo', getStoredInfo);
+
 module.exports.path = path;

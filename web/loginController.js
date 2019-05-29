@@ -13,7 +13,6 @@ function login(request, response){
       } else {
         dao.insert("user_info", {user_id: user_id, user_name: user_name, province: province, city: city}, function(error, result){
           if (error == null) {
-            console.log('result', result)
             response.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
             response.write('登录成功！2');
             response.end()

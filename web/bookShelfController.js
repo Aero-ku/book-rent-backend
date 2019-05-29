@@ -29,6 +29,20 @@ function deleteFromShelf(request, response) {
 		}
 	})
 }
+// 借书架删除多本绘本（一般时下单时将已下单的绘本删除）
+function deleteMultiBook(request, response) {
+	const {userName, bookArr } = request.body
+	console.log('bookArr', bookArr)
+	bookArr.forEach((item, index) => {
+		dao.update("user_info", {user_name: userName}, {$pull: {user_borrow: { book_id: item} }}, function(error, result) {
+			if (error === null) {
+			}
+		})
+	})
+	response.writeHead(200, {"Content-Type": "text/html;charset=utf-8"})
+	response.write('删除成功！');
+	response.end();
+}
 
 // 查询用户的借书架信息
 function shelfInfo(request, response){
@@ -46,6 +60,7 @@ function shelfInfo(request, response){
 
 path.set('/addToShelf', addToShelf);
 path.set('/deleteFromShelf', deleteFromShelf);
+path.set('/deleteMultiBook', deleteMultiBook);
 path.set('/shelfInfo', shelfInfo);
 
 module.exports.path = path;

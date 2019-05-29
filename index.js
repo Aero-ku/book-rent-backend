@@ -25,8 +25,11 @@ app.post('/storeBook', loader.get('/storeBook'));
 // 取消收藏
 app.post('/unStoreBook', loader.get('/unStoreBook'));
 
-// 获取用户图书收藏信息
-app.get('/getStoreInfo', loader.get('/getStoreInfo'));
+// 我的收藏
+app.get('/myStore', loader.get('/myStore'));
+
+// 获取用户收藏信息
+app.get("/getStoredInfo", loader.get('/getStoredInfo'));
 
 // 获取个人中心一栏信息
 app.get('/getFirstInfo', loader.get('/getFirstInfo'));
@@ -37,10 +40,28 @@ app.post('/addToShelf', loader.get('/addToShelf'));
 // 借书架中删除绘本
 app.post('/deleteFromShelf', loader.get('/deleteFromShelf'));
 
+// 借书架中删除多本绘本
+app.post('/deleteMultiBook', loader.get('/deleteMultiBook'));
+
 // 获取用户借书架信息
 app.get('/shelfInfo', loader.get('/shelfInfo'));
 
+// 开通会员
+app.post('/openCard', loader.get('/openCard'));
+
+// 获取会员信息
+app.get('/getCardInfo', loader.get('/getCardInfo'));
+
 // 分类图书结果页
 app.get('/getSortData', loader.get('/getSortData'));
+
+//支付订单
+app.post('/payOrder', loader.get('/payOrder'));
+
+// 订单信息
+app.get('/orderInfo', loader.get('/orderInfo'));
+
+// 修改订单信息
+app.post('/modifyOrderInfo', loader.get('/modifyOrderInfo'));
 
 app.listen(globalConfig["port"]);

@@ -55,7 +55,6 @@ function getFirstInfo(request, response){
   searchDao.find("user_info", { user_name: user_name }, function(error, result){
     if (error === null) {
       if (result.length) {
-        console.log('result:====', result)
         let res = {}
         res.storeNum = result[0].user_store.length
         res.score = result[0].score
